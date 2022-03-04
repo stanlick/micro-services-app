@@ -1,1 +1,1 @@
-web: java -jar target/micro-services-0.0.1-SNAPSHOT.jar
+web: java -jar target/microservices-0.0.1-SNAPSHOT.jar
