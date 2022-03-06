@@ -56,7 +56,6 @@ public class CalendarUtils {
 			default:
 				throw new IllegalArgumentException(command + " is invalid.  Try /dates/help for valid commands");
 		}
-
 	}
 
 	private List<LocalDate> getDates(String command, int number, DayOfWeek dayOfWeek) {
@@ -64,7 +63,6 @@ public class CalendarUtils {
 			return nextDates(number, dayOfWeek, new ArrayList<>());
 		else
 			return previousDates(number, dayOfWeek, new ArrayList<>());
-
 	}
 
 	private List<LocalDate> nextDates(int number, DayOfWeek dayOfWeek, List<LocalDate> dates) {
@@ -84,6 +82,4 @@ public class CalendarUtils {
 		}
 		return dates;
 	}
-
-
 }
