@@ -9,29 +9,22 @@ import org.springframework.web.context.request.WebRequest;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import lombok.Builder;
 import lombok.Data;
 
+@Builder
 @Data
 class ApiError {
 
 	private WebRequest webRequest;
 	private HttpStatus status;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy hh:mm:ss")
-	private LocalDateTime timestamp;
+	private final LocalDateTime timestamp = LocalDateTime.now();
 	private String message;
-	private String debugMessage;
+	private Throwable throwable;
 	private List<ApiSubError> subErrors;
 
-	ApiError(HttpStatus status) {
-		this.status = status;
-		this.timestamp = LocalDateTime.now(ZoneId.of("America/Chicago"));
-	}
 
-	ApiError(WebRequest request, HttpStatus status, String message, Throwable ex) {
-		this(status);
-		this.webRequest=request;
-		this.message = message;
-		this.debugMessage = ex.getLocalizedMessage();
-	}
+
 }
 
