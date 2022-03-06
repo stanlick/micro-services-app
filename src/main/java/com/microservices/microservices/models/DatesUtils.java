@@ -26,12 +26,12 @@ public class DatesUtils {
         return d.minusDays(7*whichPrevious);
       }
 
-      public static LocalDate getSomePreviousOrSameDayOfWeek(DayOfWeek dayOfWeek) {
+      public static LocalDate getSomePreviousDayOfWeek(DayOfWeek dayOfWeek) {
         return LocalDate.now()
-                 .with(TemporalAdjusters.previousOrSame(dayOfWeek));
+                 .with(TemporalAdjusters.previousOrSame(dayOfWeek)).minusDays(7);
       }
 
-      public static LocalDate getSomeNextOrSameDayOfWeek(DayOfWeek dayOfWeek) {
+      public static LocalDate getSomeNextDayOfWeek(DayOfWeek dayOfWeek) {
         return LocalDate.now()
                  .with(TemporalAdjusters.nextOrSame(dayOfWeek)).plusDays(7);
       }

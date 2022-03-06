@@ -70,7 +70,7 @@ public class CalendarUtils {
 	private List<LocalDate> nextDates(int number, DayOfWeek dayOfWeek, List<LocalDate> dates) {
 		int daysToAdd = 0;
 		for (int i = 0; i < number; i++) {
-			dates.add(DatesUtils.getSomeNextOrSameDayOfWeek(dayOfWeek).plusDays(daysToAdd));
+			dates.add(DatesUtils.getSomeNextDayOfWeek(dayOfWeek).plusDays(daysToAdd));
 			daysToAdd += 7;
 		}
 		return dates;
@@ -79,7 +79,7 @@ public class CalendarUtils {
 	private List<LocalDate> previousDates(int number, DayOfWeek dayOfWeek, List<LocalDate> dates) {
 		int daysToSubtract = 0;
 		for (int i = 0; i < number; i++) {
-			dates.add(DatesUtils.getSomePreviousOrSameDayOfWeek(dayOfWeek).minusDays(daysToSubtract));
+			dates.add(DatesUtils.getSomePreviousDayOfWeek(dayOfWeek).minusDays(daysToSubtract));
 			daysToSubtract += 7;
 		}
 		return dates;
