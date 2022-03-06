@@ -27,13 +27,19 @@ public class DatesUtils {
       }
 
       public static LocalDate getSomePreviousDayOfWeek(DayOfWeek dayOfWeek) {
-        return LocalDate.now()
-                 .with(TemporalAdjusters.previousOrSame(dayOfWeek)).minusDays(7);
+          LocalDate localDate = LocalDate.now()
+                 .with(TemporalAdjusters.previousOrSame(dayOfWeek));
+          if (localDate.equals(LocalDate.now()))
+              return localDate.minusDays(7);
+          return localDate;
       }
 
       public static LocalDate getSomeNextDayOfWeek(DayOfWeek dayOfWeek) {
-        return LocalDate.now()
-                 .with(TemporalAdjusters.nextOrSame(dayOfWeek)).plusDays(7);
+          LocalDate localDate =  LocalDate.now()
+                 .with(TemporalAdjusters.nextOrSame(dayOfWeek));
+          if (localDate.equals(LocalDate.now()))
+              return localDate.plusDays(7);
+          return localDate;
       }
 
       public static LocalDate getSomePreviousFriday(LocalDate d, int whichNext) {
