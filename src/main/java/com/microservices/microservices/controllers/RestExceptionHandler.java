@@ -1,5 +1,6 @@
 package com.microservices.microservices.controllers;
 
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 import org.springframework.core.Ordered;
@@ -24,17 +25,16 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 		return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, error, ex));
 	}
 
-	private ResponseEntity<Object> buildResponseEntity(ApiError apiError) {
-		return new ResponseEntity<>(apiError, apiError.getStatus());
-	}
-
 	//other exception handlers below
 	@ExceptionHandler(IllegalArgumentException.class)
-	protected ResponseEntity<Object> handleIllegalArgumentException(
-			IllegalArgumentException ex) {
-		ApiError apiError = new ApiError(NOT_FOUND);
+	protected ResponseEntity<Object> handleIllegalArgumentException(IllegalArgumentException ex) {
+		ApiError apiError = new ApiError(BAD_REQUEST);
 		apiError.setMessage(ex.getMessage());
 		return buildResponseEntity(apiError);
+	}
+
+	private ResponseEntity<Object> buildResponseEntity(ApiError apiError) {
+		return new ResponseEntity<>(apiError, apiError.getStatus());
 	}
 }
 
