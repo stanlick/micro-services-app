@@ -1,5 +1,7 @@
 package com.microservices.microservices.controllers;
 
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpHeaders;
@@ -7,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -26,5 +29,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 
 	//other exception handlers below
+	@ExceptionHandler(IllegalArgumentException.class)
+	protected ResponseEntity<Object> handleIllegalArgumentException(
+			IllegalArgumentException ex) {
+		ApiError apiError = new ApiError(NOT_FOUND);
+		apiError.setMessage(ex.getMessage());
+		return buildResponseEntity(apiError);
+	}
 }
 
