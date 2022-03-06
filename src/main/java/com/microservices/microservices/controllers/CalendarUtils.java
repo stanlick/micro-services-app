@@ -51,7 +51,6 @@ public class CalendarUtils {
 											   @PathVariable DayOfWeek dayOfWeek) {
 		switch (command) {
 			case "next":
-				return ResponseEntity.ok().body(getDates(command, number, dayOfWeek));
 			case "previous":
 				return ResponseEntity.ok().body(getDates(command, number, dayOfWeek));
 			default:

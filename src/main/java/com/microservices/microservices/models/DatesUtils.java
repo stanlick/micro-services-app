@@ -33,7 +33,7 @@ public class DatesUtils {
 
       public static LocalDate getSomeNextOrSameDayOfWeek(DayOfWeek dayOfWeek) {
         return LocalDate.now()
-                 .with(TemporalAdjusters.nextOrSame(dayOfWeek));
+                 .with(TemporalAdjusters.nextOrSame(dayOfWeek)).plusDays(7);
       }
 
       public static LocalDate getSomePreviousFriday(LocalDate d, int whichNext) {
